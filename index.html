@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Year 13 Chemistry Challenge</title>
+    <title> Study Smart </title></title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -75,36 +75,37 @@
         <!-- Welcome Screen -->
         <div id="welcome-screen" class="fade-in">
             <div class="bg-white/10 backdrop-blur-lg rounded-xl p-8 shadow-xl">
-                <h1 class="text-4xl font-bold text-center mb-6">Year 13 Chemistry Challenge</h1>
-                <p class="text-lg text-center mb-8">Test your advanced chemistry knowledge with this interactive quiz!</p>
-                
+                <h1 class="text-4xl font-bold text-center mb-6">Study Smart</h1>
+                <p class="text-lg text-center mb-8">Test your knowledge with interactive quizzes!</p>
+
+                <!--
                 <div class="bg-white/5 backdrop-blur-sm rounded-lg p-6 mb-8">
                     <h2 class="text-2xl font-semibold mb-4">Instructions:</h2>
                     <ul class="list-disc pl-6 space-y-2">
                         <li>Choose your character before starting the quiz</li>
-                        <li>The quiz consists of 15 challenging chemistry questions</li>
+                        <li>The quiz consists of 15 challenging Chemist (Secondary)ry questions</li>
                         <li><span class="text-yellow-300 font-medium">Questions 1-7:</span> You have <span class="font-bold">30 seconds</span> to answer each question</li>
                         <li><span class="text-yellow-300 font-medium">Questions 8-15:</span> You have <span class="font-bold">60 seconds</span> to answer each question</li>
                         <li>The quiz will automatically advance when time runs out</li>
                         <li>You'll receive detailed feedback and solutions at the end</li>
                     </ul>
                 </div>
-                
-                <h2 class="text-2xl font-semibold mb-4 text-center">Choose Your Character</h2>
+                -->
+                <h2 class="text-2xl font-semibold mb-4 text-center">Choose Your Phasr</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                     <!-- Character 1 -->
-                    <div class="character bg-white/5 backdrop-blur-sm rounded-lg p-6 text-center cursor-pointer" data-character="scientist">
+                    <div class="character bg-white/5 backdrop-blur-sm rounded-lg p-6 text-center cursor-pointer" data-character="Scientist (primary)">
                         <div class="bg-blue-500/30 rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-4">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                             </svg>
                         </div>
-                        <h3 class="text-xl font-semibold mb-2">Scientist</h3>
+                        <h3 class="text-xl font-semibold mb-2">Scientist (primary)</h3>
                         <p class="text-sm text-gray-300">The methodical researcher who analyzes every detail</p>
                     </div>
                     
                     <!-- Character 2 -->
-                    <div class="character bg-white/5 backdrop-blur-sm rounded-lg p-6 text-center cursor-pointer" data-character="professor">
+                    <div class="character bg-white/5 backdrop-blur-sm rounded-lg p-6 text-center cursor-pointer" data-character="Professors (Middle)">
                         <div class="bg-purple-500/30 rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-4">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 14l9-5-9-5-9 5 9 5z" />
@@ -112,18 +113,18 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
                             </svg>
                         </div>
-                        <h3 class="text-xl font-semibold mb-2">Professor</h3>
+                        <h3 class="text-xl font-semibold mb-2">Professors (Middle)</h3>
                         <p class="text-sm text-gray-300">The knowledgeable academic with years of experience</p>
                     </div>
                     
                     <!-- Character 3 -->
-                    <div class="character bg-white/5 backdrop-blur-sm rounded-lg p-6 text-center cursor-pointer" data-character="chemist">
+                    <div class="character bg-white/5 backdrop-blur-sm rounded-lg p-6 text-center cursor-pointer" data-character="Chemist (Secondary)">
                         <div class="bg-green-500/30 rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-4">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                             </svg>
                         </div>
-                        <h3 class="text-xl font-semibold mb-2">Chemist</h3>
+                        <h3 class="text-xl font-semibold mb-2">Chemist (Secondary)</h3>
                         <p class="text-sm text-gray-300">The practical experimenter who loves hands-on challenges</p>
                     </div>
                 </div>
@@ -508,16 +509,16 @@
             
             // Character data
             const characterData = {
-                scientist: {
-                    name: "Scientist",
+                Scientist (primary): {
+                    name: "Scientist (primary)",
                     icon: `<div class="bg-blue-500/30 rounded-full w-full h-full flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                         </svg>
                     </div>`
                 },
-                professor: {
-                    name: "Professor",
+                Professors (Middle): {
+                    name: "Professors (Middle)",
                     icon: `<div class="bg-purple-500/30 rounded-full w-full h-full flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 14l9-5-9-5-9 5 9 5z" />
@@ -525,8 +526,8 @@
                         </svg>
                     </div>`
                 },
-                chemist: {
-                    name: "Chemist",
+                Chemist (Secondary): {
+                    name: "Chemist (Secondary)",
                     icon: `<div class="bg-green-500/30 rounded-full w-full h-full flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
@@ -737,19 +738,19 @@
                 
                 // Set feedback message
                 if (score === quizData.length) {
-                    feedbackMessage.textContent = "Perfect score! You've mastered Year 13 Chemistry!";
+                    feedbackMessage.textContent = "Perfect score! You've mastered Year 13 Chemist (Secondary)ry!";
                     feedbackMessage.classList.add('text-green-300');
                 } else if (score >= quizData.length * 0.8) {
-                    feedbackMessage.textContent = "Excellent work! You have a strong understanding of chemistry concepts.";
+                    feedbackMessage.textContent = "Excellent work! You have a strong understanding of Chemist (Secondary)ry concepts.";
                     feedbackMessage.classList.add('text-green-300');
                 } else if (score >= quizData.length * 0.6) {
-                    feedbackMessage.textContent = "Good job! You're on the right track with your chemistry knowledge.";
+                    feedbackMessage.textContent = "Good job! You're on the right track with your Chemist (Secondary)ry knowledge.";
                     feedbackMessage.classList.add('text-yellow-300');
                 } else if (score >= quizData.length * 0.4) {
                     feedbackMessage.textContent = "You're making progress. Review the explanations to strengthen your understanding.";
                     feedbackMessage.classList.add('text-yellow-300');
                 } else {
-                    feedbackMessage.textContent = "Keep studying! Chemistry takes practice. Review the explanations carefully.";
+                    feedbackMessage.textContent = "Keep studying! Chemist (Secondary)ry takes practice. Review the explanations carefully.";
                     feedbackMessage.classList.add('text-red-300');
                 }
                 
