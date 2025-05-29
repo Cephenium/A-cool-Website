@@ -2,799 +2,1510 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Study Smart </title></title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>ChemQuiz - Student Learning Platform</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #1a3c6e 0%, #2a5298 100%);
-            min-height: 100vh;
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f0f9ff;
+    }
+
+    .fade-in {
+        animation: fadeIn 0.8s ease-in;
+    }
+
+    .slide-in {
+        animation: slideIn 0.6s ease-out;
+    }
+
+    .pulse {
+        animation: pulse 2s infinite;
+    }
+
+    .scale-in {
+        animation: scaleIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
         }
-        
-        .character {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        to {
+            opacity: 1;
         }
-        
-        .character:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateY(20px);
+            opacity: 0;
         }
-        
-        .character.selected {
-            border: 3px solid #4ade80;
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    @keyframes scaleIn {
+        from {
+            transform: scale(0.8);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    .card-hover {
+        transition: all 0.3s ease;
+    }
+
+    .card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    .login-bg {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%233b82f6' fill-opacity='0.1'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .molecule-icon {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 60px;
+    }
+
+    .atom {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #3b82f6;
+        box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+    }
+
+    .atom-1 {
+        top: 0;
+        left: 20px;
+        animation: float 3s infinite ease-in-out;
+    }
+
+    .atom-2 {
+        top: 20px;
+        left: 0;
+        animation: float 2.5s infinite ease-in-out 0.2s;
+    }
+
+    .atom-3 {
+        top: 20px;
+        left: 40px;
+        animation: float 3.5s infinite ease-in-out 0.5s;
+    }
+
+    .atom-4 {
+        top: 40px;
+        left: 20px;
+        animation: float 3s infinite ease-in-out 0.7s;
+    }
+
+    .bond {
+        position: absolute;
+        background: #93c5fd;
+        height: 2px;
+        width: 25px;
+        transform-origin: left center;
+    }
+
+    .bond-1 {
+        top: 10px;
+        left: 20px;
+        transform: rotate(45deg);
+    }
+
+    .bond-2 {
+        top: 20px;
+        left: 20px;
+        transform: rotate(-45deg);
+    }
+
+    .bond-3 {
+        top: 30px;
+        left: 20px;
+        transform: rotate(45deg);
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
             transform: translateY(-5px);
         }
-        
-        .timer-bar {
-            transition: width 1s linear;
-        }
-        
-        .option-btn {
-            transition: all 0.3s ease;
-        }
-        
-        .option-btn:hover:not(.disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .option-btn.correct {
-            background-color: #4ade80 !important;
-            color: white !important;
-        }
-        
-        .option-btn.incorrect {
-            background-color: #f87171 !important;
-            color: white !important;
-        }
-        
-        .option-btn.selected {
-            border: 2px solid #3b82f6;
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.5s ease-in;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .molecule-svg {
-            max-width: 100%;
-            height: auto;
-        }
+    }
+
+    .timer-bar {
+        transition: width 1s linear;
+    }
+
+    .option-btn {
+        transition: all 0.3s ease;
+    }
+
+    .option-btn:hover:not(.disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .option-btn.correct {
+        background-color: #4ade80 !important;
+        color: white !important;
+    }
+
+    .option-btn.incorrect {
+        background-color: #f87171 !important;
+        color: white !important;
+    }
+
+    .option-btn.selected {
+        border: 2px solid #3b82f6;
+    }
     </style>
 </head>
-<body class="text-white">
-    <div id="app" class="container mx-auto px-4 py-8 max-w-4xl">
-        <!-- Welcome Screen -->
-        <div id="welcome-screen" class="fade-in">
-            <div class="bg-white/10 backdrop-blur-lg rounded-xl p-8 shadow-xl">
-                <h1 class="text-4xl font-bold text-center mb-6">Study Smart</h1>
-                <p class="text-lg text-center mb-8">Test your knowledge with interactive quizzes!</p>
-
-                <!--
-                <div class="bg-white/5 backdrop-blur-sm rounded-lg p-6 mb-8">
-                    <h2 class="text-2xl font-semibold mb-4">Instructions:</h2>
-                    <ul class="list-disc pl-6 space-y-2">
-                        <li>Choose your character before starting the quiz</li>
-                        <li>The quiz consists of 15 challenging Chemist (Secondary)ry questions</li>
-                        <li><span class="text-yellow-300 font-medium">Questions 1-7:</span> You have <span class="font-bold">30 seconds</span> to answer each question</li>
-                        <li><span class="text-yellow-300 font-medium">Questions 8-15:</span> You have <span class="font-bold">60 seconds</span> to answer each question</li>
-                        <li>The quiz will automatically advance when time runs out</li>
-                        <li>You'll receive detailed feedback and solutions at the end</li>
-                    </ul>
-                </div>
-                -->
-                <h2 class="text-2xl font-semibold mb-4 text-center">Choose Your Phase</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <!-- Character 1 -->
-                    <div class="character bg-white/5 backdrop-blur-sm rounded-lg p-6 text-center cursor-pointer" data-character="Scientist">
-                        <div class="bg-blue-500/30 rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-2">Scientist (primary)</h3>
-                        <p class="text-sm text-gray-300">The methodical researcher who analyzes every detail</p>
-                    </div>
-                    
-                    <!-- Character 2 -->
-                    <div class="character bg-white/5 backdrop-blur-sm rounded-lg p-6 text-center cursor-pointer" data-character="Professors">
-                        <div class="bg-purple-500/30 rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 14l9-5-9-5-9 5 9 5z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-2">Professors (Middle)</h3>
-                        <p class="text-sm text-gray-300">The knowledgeable academic with years of experience</p>
-                    </div>
-                    
-                    <!-- Character 3 -->
-                    <div class="character bg-white/5 backdrop-blur-sm rounded-lg p-6 text-center cursor-pointer" data-character="Chemist">
-                        <div class="bg-green-500/30 rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-2">Chemist (Secondary)</h3>
-                        <p class="text-sm text-gray-300">The practical experimenter who loves hands-on challenges</p>
-                    </div>
-                </div>
-
-                 <div class="mb-6">
-            <h2 class="text-xl font-semibold mb-2">Student Information:</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                    <label for="student-name" class="block text-sm font-medium text-White-700 mb-1 ">Full Name</label>
-                    <input type="text" id="student-name" class="w-full px-4 py-2 border border-gray-300 rounded-full flex focus:outline-none focus:ring-2  focus:ring-blue-500" style="color:black">
-                </div>
-                <div>
-                    <label for="student-id" class="block text-sm font-medium text-White-700 mb-1 ">Student ID (Demo)</label>
-                    <input type="text" id="student-id" class="w-full px-4 py-2 border border-gray-300 rounded-full flex focus:outline-none focus:ring-2 focus:ring-blue-500 " style="color:black">
+<body>
+<div id="app">
+    <!-- Login Page -->
+    <div class="min-h-screen flex items-center justify-center login-bg" id="login-page">
+        <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md fade-in">
+            <div class="flex justify-center mb-6">
+                <div class="molecule-icon">
+                    <div class="atom atom-1"></div>
+                    <div class="atom atom-2"></div>
+                    <div class="atom atom-3"></div>
+                    <div class="atom atom-4"></div>
+                    <div class="bond bond-1"></div>
+                    <div class="bond bond-2"></div>
+                    <div class="bond bond-3"></div>
                 </div>
             </div>
-        </div>
-                
-                <div class="text-center">
-                    <button id="start-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
-                        Start Quiz
-                    </button>
+            <h2 class="text-3xl font-bold text-center text-blue-600 mb-6">ChemQuiz</h2>
+            <form class="space-y-4" id="login-form">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1" for="email">Email</label>
+                    <input class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="email"
+                           required
+                           type="email">
                 </div>
-            </div>
-        </div>
-        
-        <!-- Quiz Screen -->
-        <div id="quiz-screen" class="hidden fade-in">
-            <div class="bg-white/10 backdrop-blur-lg rounded-xl p-8 shadow-xl">
-                <div class="flex justify-between items-center mb-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1" for="password">Password</label>
+                    <input class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="password"
+                           required
+                           type="password">
+                </div>
+                <div class="flex items-center justify-between">
                     <div class="flex items-center">
-                        <div id="character-icon" class="w-12 h-12 rounded-full flex items-center justify-center mr-3"></div>
-                        <span id="character-name" class="text-lg font-medium"></span>
+                        <input class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" id="remember"
+                               type="checkbox">
+                        <label class="ml-2 block text-sm text-gray-700" for="remember">Remember me</label>
                     </div>
-                    <div class="text-right">
-                        <div class="text-sm text-gray-300">Question</div>
-                        <div class="text-2xl font-bold"><span id="current-question">1</span>/<span id="total-questions">15</span></div>
-                    </div>
+                    <a class="text-sm text-blue-600 hover:underline" href="#">Forgot password?</a>
                 </div>
-                
-                <div class="mb-6">
-                    <div class="flex justify-between items-center mb-2">
-                        <div class="text-sm font-medium">Time Remaining: <span id="timer-text">30</span>s</div>
-                        <div id="time-indicator" class="text-sm font-medium">30-second question</div>
-                    </div>
-                    <div class="bg-white/5 h-2 rounded-full">
-                        <div id="timer-bar" class="bg-blue-500 h-2 rounded-full timer-bar" style="width: 100%;"></div>
-                    </div>
-                </div>
-                
-                <div id="question-container" class="mb-8">
-                    <h2 id="question-text" class="text-xl font-semibold mb-4">Question text goes here</h2>
-                    <div id="question-image" class="mb-6 flex justify-center"></div>
-                    <div id="options-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <!-- Options will be inserted here -->
-                    </div>
-                </div>
-                
-                <div class="flex justify-between">
-                    <button id="prev-btn" class="bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-6 rounded-lg transition-all hidden">
-                        Previous
-                    </button>
-                    <button id="next-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition-all ml-auto">
-                        Next
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Results Screen -->
-        <div id="results-screen" class="hidden fade-in">
-            <div class="bg-white/10 backdrop-blur-lg rounded-xl p-8 shadow-xl">
-                <h1 class="text-3xl font-bold text-center mb-6">Quiz Results</h1>
-                
-                <div class="bg-white/5 backdrop-blur-sm rounded-lg p-6 mb-8">
-                    <div class="flex flex-col md:flex-row justify-between items-center mb-6">
-                        <div class="flex items-center mb-4 md:mb-0">
-                            <div id="result-character-icon" class="w-16 h-16 rounded-full flex items-center justify-center mr-4"></div>
-                            <div>
-                                <div class="text-sm text-gray-300">Character</div>
-                                <div id="result-character-name" class="text-xl font-medium"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="text-center">
-                            <div class="text-sm text-gray-300">Your Score</div>
-                            <div class="text-4xl font-bold"><span id="score">0</span>/<span id="max-score">15</span></div>
-                        </div>
-                    </div>
-                    
-                    <div class="mb-6">
-                        <div class="h-4 bg-white/5 rounded-full">
-                            <div id="score-bar" class="h-4 bg-gradient-to-r from-blue-500 to-green-500 rounded-full" style="width: 0%"></div>
-                        </div>
-                    </div>
-                    
-                    <div id="feedback-message" class="text-center text-lg mb-6"></div>
-                </div>
-                
-                <h2 class="text-2xl font-semibold mb-4">Question Review</h2>
-                <div id="questions-review" class="space-y-6">
-                    <!-- Question review items will be inserted here -->
-                </div>
-                
-                <div class="text-center mt-8">
-                    <button id="restart-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg transition-all transform hover:scale-105">
-                        Try Again
-                    </button>
-                </div>
+                <button class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+                        type="submit">
+                    Sign In 
+                </button>
+            </form>
+            <div class="mt-4 text-center">
+                <p class="text-sm text-gray-600">Don't have an account? <a class="text-blue-600 hover:underline"
+                                                                           href="#">Sign
+                    up</a></p>
             </div>
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Quiz data
-            const quizData = [
+    <!-- Home Page -->
+    <div class="hidden min-h-screen bg-gray-50" id="home-page">
+        <!-- Navigation -->
+        <nav class="bg-white shadow-md">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <div class="molecule-icon scale-75">
+                            <div class="atom atom-1"></div>
+                            <div class="atom atom-2"></div>
+                            <div class="atom atom-3"></div>
+                            <div class="atom atom-4"></div>
+                            <div class="bond bond-1"></div>
+                            <div class="bond bond-2"></div>
+                            <div class="bond bond-3"></div>
+                        </div>
+                        <span class="text-xl font-bold text-blue-600 ml-2">ChemQuiz</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="hidden md:block">
+                            <div class="flex items-center space-x-4">
+                                <a class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium"
+                                   href="#">Dashboard</a>
+                                <a class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium"
+                                   href="#">My
+                                    Quizzes</a>
+                                <a class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium"
+                                   href="#">Progress</a>
+                                <a class="hidden text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium" href="#"
+                                   id="admin-link">Admin</a>
+                            </div>
+                        </div>
+                        <div class="ml-4 flex items-center">
+                            <div class="relative">
+                                <button class="flex items-center space-x-2 focus:outline-none" id="user-menu-button">
+                                    <span class="text-sm font-medium text-gray-700" id="user-name">Student Name</span>
+                                    <div class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
+                                        <span id="user-initial">S</span>
+                                    </div>
+                                </button>
+                                <div class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10"
+                                     id="user-dropdown">
+                                    <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" href="#">Your
+                                        Profile</a>
+                                    <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                       href="#">Settings</a>
+                                    <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" href="#"
+                                       id="logout-button">Sign out</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <div class="mb-8 fade-in">
+                <h1 class="text-3xl font-bold text-gray-900">Chemistry Subjects</h1>
+                <p class="mt-2 text-gray-600">Select a subject to start practicing with quizzes</p>
+            </div>
+
+            <!-- Subject Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Organic Chemistry -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover slide-in"
+                     style="animation-delay: 0.1s">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl font-semibold text-gray-900">Organic Chemistry</h3>
+                            <svg class="h-8 w-8 text-blue-500" fill="none" stroke="currentColor"
+                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <p class="mt-3 text-gray-600">Study carbon compounds, functional groups, and reaction
+                            mechanisms.</p>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-sm text-blue-600">12 quizzes available</span>
+                            <button class="subject-btn px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                                    data-subject="organic">Start Quiz
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Inorganic Chemistry -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover slide-in"
+                     style="animation-delay: 0.2s">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl font-semibold text-gray-900">Inorganic Chemistry</h3>
+                            <svg class="h-8 w-8 text-purple-500" fill="none" stroke="currentColor"
+                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <p class="mt-3 text-gray-600">Learn about elements, periodic trends, and coordination
+                            compounds.</p>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-sm text-purple-600">9 quizzes available</span>
+                            <button class="subject-btn px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors"
+                                    data-subject="inorganic">Start Quiz
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Physical Chemistry -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover slide-in"
+                     style="animation-delay: 0.3s">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl font-semibold text-gray-900">Physical Chemistry</h3>
+                            <svg class="h-8 w-8 text-green-500" fill="none" stroke="currentColor"
+                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <p class="mt-3 text-gray-600">Explore thermodynamics, kinetics, and quantum mechanics.</p>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-sm text-green-600">10 quizzes available</span>
+                            <button class="subject-btn px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
+                                    data-subject="physical">Start Quiz
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analytical Chemistry -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover slide-in"
+                     style="animation-delay: 0.4s">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl font-semibold text-gray-900">Analytical Chemistry</h3>
+                            <svg class="h-8 w-8 text-yellow-500" fill="none" stroke="currentColor"
+                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <p class="mt-3 text-gray-600">Study methods for analyzing chemical compounds and their
+                            properties.</p>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-sm text-yellow-600">8 quizzes available</span>
+                            <button class="subject-btn px-4 py-2 bg-yellow-600 text-white rounded-md hover:bg-yellow-700 transition-colors"
+                                    data-subject="analytical">Start Quiz
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Biochemistry -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover slide-in"
+                     style="animation-delay: 0.5s">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl font-semibold text-gray-900">Biochemistry</h3>
+                            <svg class="h-8 w-8 text-red-500" fill="none" stroke="currentColor"
+                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <p class="mt-3 text-gray-600">Learn about proteins, enzymes, and biological processes.</p>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-sm text-red-600">11 quizzes available</span>
+                            <button class="subject-btn px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
+                                    data-subject="biochemistry">Start Quiz
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Environmental Chemistry -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover slide-in"
+                     style="animation-delay: 0.6s">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl font-semibold text-gray-900">Environmental Chemistry</h3>
+                            <svg class="h-8 w-8 text-teal-500" fill="none" stroke="currentColor"
+                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <p class="mt-3 text-gray-600">Study chemical processes in the environment and pollution
+                            control.</p>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-sm text-teal-600">7 quizzes available</span>
+                            <button class="subject-btn px-4 py-2 bg-teal-600 text-white rounded-md hover:bg-teal-700 transition-colors"
+                                    data-subject="environmental">Start Quiz
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity Section -->
+            <div class="mt-12 fade-in">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Recent Activity</h2>
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <div class="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                                    <svg class="h-6 w-6" fill="none" stroke="currentColor"
+                                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"
+                                              stroke-width="2"/>
+                                    </svg>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-900">You completed "Organic Chemistry:
+                                        Alkanes and Alkenes" quiz</p>
+                                    <p class="text-sm text-gray-500">Score: 85% · 2 days ago</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="h-10 w-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+                                    <svg class="h-6 w-6" fill="none" stroke="currentColor"
+                                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"
+                                              stroke-width="2"/>
+                                    </svg>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-900">You started "Inorganic Chemistry:
+                                        Periodic Table" quiz</p>
+                                    <p class="text-sm text-gray-500">Progress: 60% · 3 days ago</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                    <svg class="h-6 w-6" fill="none" stroke="currentColor"
+                                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 6v6m0 0v6m0-6h6m-6 0H6" stroke-linecap="round" stroke-linejoin="round"
+                                              stroke-width="2"/>
+                                    </svg>
+                                </div>
+                                <div class="ml-4">
+                                    <p class="text-sm font-medium text-gray-900">New quiz added to "Physical
+                                        Chemistry"</p>
+                                    <p class="text-sm text-gray-500">1 week ago</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Quiz Page -->
+    <div class="hidden min-h-screen bg-gray-50" id="quiz-page">
+        <nav class="bg-white shadow-md">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <button class="mr-2 text-gray-600 hover:text-blue-600" id="back-to-home">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2"/>
+                            </svg>
+                        </button>
+                        <div class="molecule-icon scale-75">
+                            <div class="atom atom-1"></div>
+                            <div class="atom atom-2"></div>
+                            <div class="atom atom-3"></div>
+                            <div class="atom atom-4"></div>
+                            <div class="bond bond-1"></div>
+                            <div class="bond bond-2"></div>
+                            <div class="bond bond-3"></div>
+                        </div>
+                        <span class="text-xl font-bold text-blue-600 ml-2">ChemQuiz</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="text-sm font-medium text-gray-700">
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full"
+                                  id="quiz-timer">Time: 00:00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main class="max-w-3xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-xl shadow-md overflow-hidden fade-in">
+                <div class="p-6">
+                    <div class="mb-6">
+                        <h1 class="text-2xl font-bold text-gray-900" id="quiz-title">Organic Chemistry Quiz</h1>
+                        <div class="mt-2 flex items-center">
+                            <div class="bg-blue-100 h-2 flex-1 rounded-full overflow-hidden">
+                                <div class="bg-blue-600 h-2 rounded-full" id="quiz-progress" style="width: 0%"></div>
+                            </div>
+                            <span class="ml-2 text-sm text-gray-600" id="quiz-progress-text">Question 1 of 10</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <div class="text-sm font-medium">Time Remaining: <span id="timer-text">30</span>s</div>
+                            <div id="time-indicator" class="text-sm font-medium">30-second question</div>
+                        </div>
+                        <div class="bg-white/5 bg-gray-100 h-2 rounded-full">
+                            <div id="timer-bar" class="bg-blue-500 h-2 rounded-full timer-bar" style="width: 100%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6" id="question-container">
+                        <h2 class="text-lg font-medium text-gray-900 mb-4" id="question-text">What is the general
+                            formula for alkanes?</h2>
+                        <div class="space-y-3" id="options-container">
+                            <div class="option bg-white border border-gray-300 rounded-md p-3 hover:bg-blue-50 cursor-pointer transition-colors">
+                                <label class="flex items-center cursor-pointer">
+                                    <input class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" name="answer" type="radio"
+                                           value="A">
+                                    <span class="ml-3 text-gray-800">CnH2n</span>
+                                </label>
+                            </div>
+                            <div class="option bg-white border border-gray-300 rounded-md p-3 hover:bg-blue-50 cursor-pointer transition-colors">
+                                <label class="flex items-center cursor-pointer">
+                                    <input class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" name="answer" type="radio"
+                                           value="B">
+                                    <span class="ml-3 text-gray-800">CnH2n+2</span>
+                                </label>
+                            </div>
+                            <div class="option bg-white border border-gray-300 rounded-md p-3 hover:bg-blue-50 cursor-pointer transition-colors">
+                                <label class="flex items-center cursor-pointer">
+                                    <input class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" name="answer" type="radio"
+                                           value="C">
+                                    <span class="ml-3 text-gray-800">CnH2n-2</span>
+                                </label>
+                            </div>
+                            <div class="option bg-white border border-gray-300 rounded-md p-3 hover:bg-blue-50 cursor-pointer transition-colors">
+                                <label class="flex items-center cursor-pointer">
+                                    <input class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" name="answer" type="radio"
+                                           value="D">
+                                    <span class="ml-3 text-gray-800">CnHn</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between">
+                        <button class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
+                                disabled
+                                id="prev-question">
+                            Previous 
+                        </button>
+                        <button class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                                id="next-question">
+                            Next 
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Quiz Results Page -->
+    <div class="hidden min-h-screen bg-gray-50" id="results-page">
+        <nav class="bg-white shadow-md">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <button class="mr-2 text-gray-600 hover:text-blue-600" id="back-to-home-from-results">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2"/>
+                            </svg>
+                        </button>
+                        <div class="molecule-icon scale-75">
+                            <div class="atom atom-1"></div>
+                            <div class="atom atom-2"></div>
+                            <div class="atom atom-3"></div>
+                            <div class="atom atom-4"></div>
+                            <div class="bond bond-1"></div>
+                            <div class="bond bond-2"></div>
+                            <div class="bond bond-3"></div>
+                        </div>
+                        <span class="text-xl font-bold text-blue-600 ml-2">ChemQuiz</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main class="max-w-3xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-xl shadow-md overflow-hidden fade-in">
+                <div class="p-6">
+                    <div class="text-center mb-6">
+                        <div class="inline-block p-4 rounded-full bg-blue-100 mb-4">
+                            <svg class="h-12 w-12 text-blue-600" fill="none" stroke="currentColor"
+                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h1 class="text-2xl font-bold text-gray-900" id="results-title">Quiz Completed!</h1>
+                        <p class="mt-2 text-gray-600">Here's how you performed on the Organic Chemistry Quiz</p>
+                    </div>
+
+                    <div class="flex justify-center mb-8">
+                        <div class="w-48 h-48 relative">
+                            <svg class="w-full h-full" viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" fill="none" r="45" stroke="#e5e7eb" stroke-width="8"/>
+                                <circle cx="50" cy="50" fill="none" id="results-circle" r="45" stroke="#3b82f6"
+                                        stroke-dasharray="283" stroke-dashoffset="70" stroke-linecap="round"
+                                        stroke-width="8" transform="rotate(-90 50 50)"/>
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-4xl font-bold text-blue-600" id="score-percentage">80%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <div class="flex items-center">
+                                <div class="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                    <svg class="h-6 w-6" fill="none" stroke="currentColor"
+                                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"
+                                              stroke-width="2"/>
+                                    </svg>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm font-medium text-gray-900">Correct Answers</p>
+                                    <p class="text-2xl font-bold text-green-600" id="correct-answers">8</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-red-50 p-4 rounded-lg">
+                            <div class="flex items-center">
+                                <div class="h-10 w-10 rounded-full bg-red-100 flex items-center justify-center text-red-600">
+                                    <svg class="h-6 w-6" fill="none" stroke="currentColor"
+                                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"
+                                              stroke-width="2"/>
+                                    </svg>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm font-medium text-gray-900">Incorrect Answers</p>
+                                    <p class="text-2xl font-bold text-red-600" id="incorrect-answers">2</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h2 class="text-lg font-medium text-gray-900 mb-3">Performance Summary</h2>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="space-y-2">
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-600">Time Taken:</span>
+                                    <span class="text-sm font-medium" id="time-taken">03:45</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-600">Accuracy:</span>
+                                    <span class="text-sm font-medium" id="accuracy">80%</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-sm text-gray-600">Average Time per Question:</span>
+                                    <span class="text-sm font-medium" id="avg-time">22.5 seconds</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h2 class="text-lg font-medium text-gray-900 mb-3">Question Review</h2>
+                        <div id="questions-review" class="space-y-6 hidden">
+                            <!-- Question review items will be inserted here -->
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between">
+                        <button class="px-4 py-2 border border-blue-600 text-blue-600 rounded-md hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                                id="review-answers">
+                            Review Answers 
+                        </button>
+                        <button class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                                id="return-home">
+                            Return to Home 
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Admin Page -->
+    <div class="hidden min-h-screen bg-gray-50" id="admin-page">
+        <nav class="bg-white shadow-md">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <button class="mr-2 text-gray-600 hover:text-blue-600" id="back-to-home-from-admin">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2"/>
+                            </svg>
+                        </button>
+                        <div class="molecule-icon scale-75">
+                            <div class="atom atom-1"></div>
+                            <div class="atom atom-2"></div>
+                            <div class="atom atom-3"></div>
+                            <div class="atom atom-4"></div>
+                            <div class="bond bond-1"></div>
+                            <div class="bond bond-2"></div>
+                            <div class="bond bond-3"></div>
+                        </div>
+                        <span class="text-xl font-bold text-blue-600 ml-2">ChemQuiz Admin</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="text-sm font-medium text-gray-700">
+                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full">Admin Mode</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <div class="mb-8 fade-in">
+                <h1 class="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
+                <p class="mt-2 text-gray-600">Manage quizzes and upload PDF content</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- PDF Upload Section -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden fade-in">
+                        <div class="p-6">
+                            <h2 class="text-xl font-semibold text-gray-900 mb-4">Upload PDF for Quiz Generation</h2>
+                            <p class="text-gray-600 mb-6">Upload a PDF document to automatically generate quiz questions
+                                based on the content.</p>
+
+                            <div class="mb-6">
+                                <label class="block text-sm font-medium text-gray-700 mb-1" for="subject-select">Select
+                                    Subject</label>
+                                <select class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        id="subject-select">
+                                    <option value="">Choose a subject</option>
+                                    <option value="organic">Organic Chemistry</option>
+                                    <option value="inorganic">Inorganic Chemistry</option>
+                                    <option value="physical">Physical Chemistry</option>
+                                    <option value="analytical">Analytical Chemistry</option>
+                                    <option value="biochemistry">Biochemistry</option>
+                                    <option value="environmental">Environmental Chemistry</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-6">
+                                <label class="block text-sm font-medium text-gray-700 mb-1" for="quiz-title-input">Quiz
+                                    Title</label>
+                                <input class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="quiz-title-input"
+                                       placeholder="Enter quiz title"
+                                       type="text">
+                            </div>
+
+                            <div class="mb-6">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Upload PDF</label>
+                                <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-dashed border-gray-300 rounded-md">
+                                    <div class="space-y-1 text-center">
+                                        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none"
+                                             stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" stroke-linecap="round" stroke-linejoin="round"
+                                                  stroke-width="2"/>
+                                        </svg>
+                                        <div class="flex text-sm text-gray-600">
+                                            <label class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500"
+                                                   for="file-upload">
+                                                <span>Upload a file</span>
+                                                <input accept=".pdf" class="sr-only" id="file-upload" name="file-upload"
+                                                       type="file">
+                                            </label>
+                                            <p class="pl-1">or drag and drop</p>
+                                        </div>
+                                        <p class="text-xs text-gray-500">PDF up to 10MB</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <input class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" id="auto-generate"
+                                           type="checkbox">
+                                    <label class="ml-2 block text-sm text-gray-700" for="auto-generate">Auto-generate
+                                        questions</label>
+                                </div>
+                                <button class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                                        id="upload-pdf">
+                                    Upload and Process 
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Uploads -->
+                    <div class="mt-6 bg-white rounded-xl shadow-md overflow-hidden fade-in">
+                        <div class="p-6">
+                            <h2 class="text-xl font-semibold text-gray-900 mb-4">Recent Uploads</h2>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                            scope="col">
+                                            File Name
+                                        </th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                            scope="col">
+                                            Subject
+                                        </th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                            scope="col">
+                                            Date
+                                        </th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                            scope="col">
+                                            Status
+                                        </th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                            scope="col">
+                                            Actions
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                            Organic_Chemistry_Chapter5.pdf
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Organic
+                                            Chemistry
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">May 15, 2023</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Processed</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <button class="text-blue-600 hover:text-blue-900">View</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                            Inorganic_Elements.pdf
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Inorganic
+                                            Chemistry
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">May 12, 2023</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Processed</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <button class="text-blue-600 hover:text-blue-900">View</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                            Biochemistry_Enzymes.pdf
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Biochemistry</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">May 10, 2023</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Processing</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <button class="text-gray-400 cursor-not-allowed">View</button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats and Quick Actions -->
+                <div class="space-y-6">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden fade-in">
+                        <div class="p-6">
+                            <h2 class="text-xl font-semibold text-gray-900 mb-4">Statistics</h2>
+                            <div class="space-y-4">
+                                <div class="flex items-center">
+                                    <div class="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                                        <svg class="h-6 w-6" fill="none" stroke="currentColor"
+                                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke-linecap="round" stroke-linejoin="round"
+                                                  stroke-width="2"/>
+                                        </svg>
+                                    </div>
+                                    <div class="ml-4">
+                                        <p class="text-sm font-medium text-gray-500">Total Quizzes</p>
+                                        <p class="text-2xl font-bold text-gray-900">57</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                        <svg class="h-6 w-6" fill="none" stroke="currentColor"
+                                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" stroke-linecap="round" stroke-linejoin="round"
+                                                  stroke-width="2"/>
+                                        </svg>
+                                    </div>
+                                    <div class="ml-4">
+                                        <p class="text-sm font-medium text-gray-500">Active Students</p>
+                                        <p class="text-2xl font-bold text-gray-900">243</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="h-10 w-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
+                                        <svg class="h-6 w-6" fill="none" stroke="currentColor"
+                                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"
+                                                  stroke-width="2"/>
+                                        </svg>
+                                    </div>
+                                    <div class="ml-4">
+                                        <p class="text-sm font-medium text-gray-500">Quizzes Completed</p>
+                                        <p class="text-2xl font-bold text-gray-900">1,892</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden fade-in">
+                        <div class="p-6">
+                            <h2 class="text-xl font-semibold text-gray-900 mb-4">Quick Actions</h2>
+                            <div class="space-y-3">
+                                <button class="w-full flex items-center px-4 py-2 bg-blue-50 text-blue-700 rounded-md hover:bg-blue-100 transition-colors">
+                                    <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor"
+                                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 6v6m0 0v6m0-6h6m-6 0H6" stroke-linecap="round" stroke-linejoin="round"
+                                              stroke-width="2"/>
+                                    </svg>
+                                    Create New Quiz 
+                                </button>
+                                <button class="w-full flex items-center px-4 py-2 bg-green-50 text-green-700 rounded-md hover:bg-green-100 transition-colors">
+                                    <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor"
+                                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" stroke-linecap="round" stroke-linejoin="round"
+                                              stroke-width="2"/>
+                                    </svg>
+                                    Manage Students 
+                                </button>
+                                <button class="w-full flex items-center px-4 py-2 bg-purple-50 text-purple-700 rounded-md hover:bg-purple-100 transition-colors">
+                                    <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor"
+                                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round"
+                                              stroke-width="2"/>
+                                    </svg>
+                                    View Reports 
+                                </button>
+                                <button class="w-full flex items-center px-4 py-2 bg-yellow-50 text-yellow-700 rounded-md hover:bg-yellow-100 transition-colors">
+                                    <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor"
+                                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-linecap="round" stroke-linejoin="round"
+                                              stroke-width="2"/>
+                                        <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"
+                                              stroke-width="2"/>
+                                    </svg>
+                                    Settings 
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden fade-in">
+                        <div class="p-6">
+                            <h2 class="text-xl font-semibold text-gray-900 mb-4">System Status</h2>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-600">PDF Processing:</span>
+                                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Online</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-600">Quiz Generation:</span>
+                                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Online</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-600">Database:</span>
+                                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Online</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-gray-600">Last System Update:</span>
+                                    <span class="text-sm text-gray-800">May 10, 2023</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script>document.addEventListener('DOMContentLoaded', function () {
+    // DOM Elements 
+    const loginPage = document.getElementById('login-page');
+    const homePage = document.getElementById('home-page');
+    const quizPage = document.getElementById('quiz-page');
+    const resultsPage = document.getElementById('results-page');
+    const adminPage = document.getElementById('admin-page');
+    const loginForm = document.getElementById('login-form');
+    const userMenuButton = document.getElementById('user-menu-button');
+    const userDropdown = document.getElementById('user-dropdown');
+    const logoutButton = document.getElementById('logout-button');
+    const subjectButtons = document.querySelectorAll('.subject-btn');
+    const backToHomeBtn = document.getElementById('back-to-home');
+    const backToHomeFromResultsBtn = document.getElementById('back-to-home-from-results');
+    const backToHomeFromAdminBtn = document.getElementById('back-to-home-from-admin');
+    const nextQuestionBtn = document.getElementById('next-question');
+    const prevQuestionBtn = document.getElementById('prev-question');
+    const returnHomeBtn = document.getElementById('return-home');
+    const reviewAnswersBtn = document.getElementById('review-answers');
+    const adminLink = document.getElementById('admin-link');
+    const uploadPdfBtn = document.getElementById('upload-pdf');
+
+    // Sample quiz data 
+    const quizData = {
+        organic: {
+            title: "Organic Chemistry Quiz",
+            questions: [
                 {
-                    question: "Which of the following best describes the role of a catalyst in a chemical reaction?",
-                    options: [
-                        "It increases the yield of the reaction",
-                        "It provides an alternative reaction pathway with lower activation energy",
-                        "It shifts the equilibrium position to favor the products",
-                        "It increases the enthalpy change of the reaction"
-                    ],
-                    correctAnswer: 1,
-                    explanation: "A catalyst provides an alternative reaction pathway with a lower activation energy, increasing the rate of reaction without being consumed in the process. It does not affect the position of equilibrium or the enthalpy change.",
+                    question: "What is the general formula for alkanes?",
+                    options: ["CnH2n", "CnH2n+2", "CnH2n-2", "CnHn"],
+                    answer: "B",
+                    explanation: "Alkanes are saturated hydrocarbons with the general formula CnH2n+2, where n is the number of carbon atoms.",
                     timeLimit: 30
                 },
                 {
-                    question: "Calculate the pH of a buffer solution containing 0.15 M ethanoic acid (Ka = 1.8 × 10⁻⁵) and 0.20 M sodium ethanoate.",
-                    options: [
-                        "pH = 4.83",
-                        "pH = 5.12",
-                        "pH = 4.32",
-                        "pH = 3.74"
-                    ],
-                    correctAnswer: 0,
-                    explanation: "Using the Henderson-Hasselbalch equation: pH = pKa + log([salt]/[acid]) = -log(1.8 × 10⁻⁵) + log(0.20/0.15) = 4.74 + 0.09 = 4.83",
+                    question: "Which functional group is characteristic of alcohols?",
+                    options: ["-COOH", "-OH", "-CHO", "-C=O"],
+                    answer: "B",
+                    explanation: "Alcohols are characterized by the hydroxyl (-OH) functional group attached to a carbon atom.",
                     timeLimit: 30
                 },
                 {
-                    question: "Which of the following statements about entropy is correct?",
-                    options: [
-                        "Entropy always decreases in spontaneous reactions",
-                        "The entropy of a perfect crystal at absolute zero is positive",
-                        "Entropy generally increases when a liquid changes to a gas",
-                        "Entropy is a measure of the heat content of a system"
-                    ],
-                    correctAnswer: 2,
-                    explanation: "Entropy generally increases when a liquid changes to a gas because the particles have more positional disorder in the gaseous state. The third law of thermodynamics states that the entropy of a perfect crystal at absolute zero is zero, not positive.",
+                    question: "What is the IUPAC name for CH3-CH2-CH2-CH3?",
+                    options: ["Methane", "Ethane", "Propane", "Butane"],
+                    answer: "D",
+                    explanation: "CH3-CH2-CH2-CH3 has 4 carbon atoms in a straight chain, so its IUPAC name is butane.",
                     timeLimit: 30
                 },
                 {
-                    question: "What is the hybridization of the carbon atom in the carbonyl group of an aldehyde?",
-                    options: [
-                        "sp",
-                        "sp²",
-                        "sp³",
-                        "sp³d"
-                    ],
-                    correctAnswer: 1,
-                    explanation: "The carbon atom in a carbonyl group (C=O) has sp² hybridization. This creates a trigonal planar geometry with bond angles of approximately 120°.",
+                    question: "Which of the following is an aromatic compound?",
+                    options: ["Cyclohexane", "Benzene", "Hexane", "Propene"],
+                    answer: "B",
+                    explanation: "Benzene (C6H6) is an aromatic compound with a planar ring structure and delocalized π electrons.",
                     timeLimit: 30
                 },
                 {
-                    question: "Which mechanism best describes the reaction between 2-bromopropane and sodium hydroxide?",
-                    options: [
-                        "SN1",
-                        "SN2",
-                        "E1",
-                        "E2"
-                    ],
-                    correctAnswer: 0,
-                    explanation: "The reaction between 2-bromopropane (a secondary halogenoalkane) and sodium hydroxide primarily follows an SN1 mechanism. This involves the formation of a carbocation intermediate due to the relatively stable secondary carbocation that can form.",
+                    question: "What type of reaction is the conversion of an alkene to an alkane?",
+                    options: ["Oxidation", "Reduction", "Substitution", "Elimination"],
+                    answer: "B",
+                    explanation: "The conversion of an alkene to an alkane involves the addition of hydrogen (H2), which is a reduction reaction.",
                     timeLimit: 30
-                },
-                {
-                    question: "What is the major product when propene reacts with hydrogen bromide in the presence of peroxides?",
-                    options: [
-                        "1-bromopropane",
-                        "2-bromopropane",
-                        "1,2-dibromopropane",
-                        "Propyl bromide"
-                    ],
-                    correctAnswer: 0,
-                    explanation: "When propene reacts with HBr in the presence of peroxides, the reaction follows anti-Markovnikov addition due to the radical mechanism. This results in 1-bromopropane as the major product, with the bromine attaching to the less substituted carbon atom.",
-                    timeLimit: 30
-                },
-                {
-                    question: "Which of the following best explains the trend in boiling points of the halogens (F₂, Cl₂, Br₂, I₂)?",
-                    options: [
-                        "Increasing atomic radius",
-                        "Increasing electronegativity",
-                        "Increasing van der Waals forces",
-                        "Increasing bond strength"
-                    ],
-                    correctAnswer: 2,
-                    explanation: "The boiling points of halogens increase down the group (F₂ < Cl₂ < Br₂ < I₂) due to increasing van der Waals forces. As the atomic size increases, the electron cloud becomes more polarizable, resulting in stronger intermolecular forces and higher boiling points.",
-                    timeLimit: 30
-                },
-                {
-                    question: "Consider the following cell: Zn(s) | Zn²⁺(aq) || Cu²⁺(aq) | Cu(s). If the standard electrode potentials are E°(Zn²⁺/Zn) = -0.76 V and E°(Cu²⁺/Cu) = +0.34 V, what is the standard cell potential?",
-                    image: `<svg class="molecule-svg" width="400" height="120" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="50" y="20" width="120" height="80" fill="none" stroke="white" stroke-width="2"/>
-                        <rect x="230" y="20" width="120" height="80" fill="none" stroke="white" stroke-width="2"/>
-                        <text x="110" y="60" fill="white" font-size="16" text-anchor="middle">Zn | Zn²⁺</text>
-                        <text x="290" y="60" fill="white" font-size="16" text-anchor="middle">Cu²⁺ | Cu</text>
-                        <line x1="170" y1="50" x2="230" y2="50" stroke="white" stroke-width="2"/>
-                        <text x="200" y="40" fill="white" font-size="14" text-anchor="middle">Salt bridge</text>
-                    </svg>`,
-                    options: [
-                        "+0.42 V",
-                        "+1.10 V",
-                        "-0.42 V",
-                        "-1.10 V"
-                    ],
-                    correctAnswer: 1,
-                    explanation: "The standard cell potential is calculated as E°cell = E°(cathode) - E°(anode) = E°(Cu²⁺/Cu) - E°(Zn²⁺/Zn) = +0.34 V - (-0.76 V) = +1.10 V. The positive value indicates a spontaneous reaction.",
-                    timeLimit: 60
-                },
-                {
-                    question: "Identify the major organic product formed when cyclohexene reacts with HBr.",
-                    image: `<svg class="molecule-svg" width="400" height="150" xmlns="http://www.w3.org/2000/svg">
-                        <polygon points="150,50 175,25 225,25 250,50 225,75 175,75" fill="none" stroke="white" stroke-width="2"/>
-                        <line x1="175" y1="25" x2="225" y2="25" stroke="white" stroke-width="4"/>
-                        <text x="300" y="50" fill="white" font-size="20" text-anchor="middle">+ HBr →</text>
-                        <text x="300" y="75" fill="white" font-size="16" text-anchor="middle">?</text>
-                    </svg>`,
-                    options: [
-                        "1-bromocyclohexene",
-                        "1-bromocyclohexane",
-                        "bromocyclohexane",
-                        "trans-2-bromocyclohexanol"
-                    ],
-                    correctAnswer: 2,
-                    explanation: "When cyclohexene reacts with HBr, the reaction follows Markovnikov's rule. The hydrogen attaches to the carbon with more hydrogens (less substituted), and the bromine attaches to the carbon with fewer hydrogens (more substituted), forming bromocyclohexane.",
-                    timeLimit: 60
-                },
-                {
-                    question: "Calculate the standard enthalpy change for the reaction: 2C(s) + 3H₂(g) + ½O₂(g) → C₂H₅OH(l) using the following data:\nΔHf°[C₂H₅OH(l)] = -278 kJ/mol\nΔHf°[CO₂(g)] = -394 kJ/mol\nΔHf°[H₂O(l)] = -286 kJ/mol",
-                    options: [
-                        "-278 kJ/mol",
-                        "+278 kJ/mol",
-                        "-1368 kJ/mol",
-                        "+1368 kJ/mol"
-                    ],
-                    correctAnswer: 0,
-                    explanation: "For the formation reaction of ethanol from its elements, the standard enthalpy change is equal to the standard enthalpy of formation of ethanol, which is -278 kJ/mol. The other values provided are not needed for this calculation.",
-                    timeLimit: 60
-                },
-                {
-                    question: "Which of the following best explains why transition metals often form colored compounds?",
-                    options: [
-                        "Due to d-d electron transitions when partially filled d-orbitals are split by ligands",
-                        "Due to the presence of unpaired electrons in their valence shell",
-                        "Due to charge transfer between the metal and non-metal ions",
-                        "Due to the emission of photons during radioactive decay"
-                    ],
-                    correctAnswer: 0,
-                    explanation: "Transition metals form colored compounds primarily due to d-d electron transitions. When ligands approach the transition metal ion, they cause the d-orbitals to split into different energy levels. The absorption of visible light causes electrons to jump between these split d-orbitals, and the complementary color is observed.",
-                    timeLimit: 60
-                },
-                {
-                    question: "Identify the correct IUPAC name for the following organic compound:",
-                    image: `<svg class="molecule-svg" width="400" height="150" xmlns="http://www.w3.org/2000/svg">
-                        <line x1="100" y1="75" x2="150" y2="75" stroke="white" stroke-width="2"/>
-                        <line x1="150" y1="75" x2="200" y2="75" stroke="white" stroke-width="2"/>
-                        <line x1="200" y1="75" x2="250" y2="75" stroke="white" stroke-width="2"/>
-                        <line x1="250" y1="75" x2="300" y2="75" stroke="white" stroke-width="2"/>
-                        <line x1="150" y1="75" x2="150" y2="40" stroke="white" stroke-width="2"/>
-                        <line x1="200" y1="75" x2="200" y2="40" stroke="white" stroke-width="2"/>
-                        <line x1="200" y1="40" x2="250" y2="40" stroke="white" stroke-width="2"/>
-                        <line x1="250" y1="40" x2="250" y2="75" stroke="white" stroke-width="2"/>
-                        <text x="150" y="35" fill="white" font-size="14" text-anchor="middle">OH</text>
-                        <text x="225" y="35" fill="white" font-size="14" text-anchor="middle">O</text>
-                    </svg>`,
-                    options: [
-                        "4-hydroxy-2-pentanone",
-                        "2-hydroxy-4-pentanone",
-                        "4-hydroxy-3-pentanone",
-                        "3-hydroxy-5-pentanone"
-                    ],
-                    correctAnswer: 0,
-                    explanation: "The compound shown is 4-hydroxy-2-pentanone. The main chain is a 5-carbon chain (pentanone) with a ketone group at position 2 and a hydroxyl group at position 4. The carbonyl group takes numbering priority over the hydroxyl group.",
-                    timeLimit: 60
-                },
-                {
-                    question: "For the reaction: N₂(g) + 3H₂(g) ⇌ 2NH₃(g), which change would increase the yield of ammonia at equilibrium?",
-                    options: [
-                        "Decreasing the pressure",
-                        "Adding a catalyst",
-                        "Increasing the temperature",
-                        "Removing hydrogen gas"
-                    ],
-                    correctAnswer: 0,
-                    explanation: "According to Le Chatelier's principle, increasing pressure will favor the side with fewer gas molecules. In this reaction, there are 4 moles of gas on the reactant side (1 N₂ + 3 H₂) and 2 moles on the product side (2 NH₃). Therefore, increasing pressure will shift the equilibrium to the right, increasing the yield of ammonia.",
-                    timeLimit: 60
-                },
-                {
-                    question: "What is the oxidation state of chromium in the dichromate ion (Cr₂O₇²⁻)?",
-                    options: [
-                        "+3",
-                        "+6",
-                        "+7",
-                        "+12"
-                    ],
-                    correctAnswer: 1,
-                    explanation: "In Cr₂O₇²⁻, the oxidation state of oxygen is -2. Let the oxidation state of Cr be x. Then: 2x + 7(-2) = -2. Solving: 2x - 14 = -2, so 2x = 12, and x = +6. Therefore, the oxidation state of chromium in dichromate ion is +6.",
-                    timeLimit: 60
-                },
-                {
-                    question: "Which of the following compounds would you expect to have the highest boiling point?",
-                    options: [
-                        "CH₃CH₂CH₂CH₃ (butane)",
-                        "CH₃CH₂OH (ethanol)",
-                        "CH₃OCH₃ (dimethyl ether)",
-                        "CH₃CH₂CH₂Cl (1-chloropropane)"
-                    ],
-                    correctAnswer: 1,
-                    explanation: "Ethanol (CH₃CH₂OH) has the highest boiling point among these compounds due to hydrogen bonding. Hydrogen bonding is the strongest intermolecular force present in these options and occurs between the hydrogen atom bonded to oxygen and the oxygen atom of another ethanol molecule.",
-                    timeLimit: 60
-                },
-                {
-                    question: "What is the major product when benzene reacts with chloromethane in the presence of aluminum chloride catalyst?",
-                    image: `<svg class="molecule-svg" width="400" height="150" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="150" cy="75" r="30" fill="none" stroke="white" stroke-width="2"/>
-                        <line x1="150" y1="45" x2="150" y2="105" stroke="white" stroke-width="2"/>
-                        <line x1="124" y1="60" x2="176" y2="90" stroke="white" stroke-width="2"/>
-                        <line x1="124" y1="90" x2="176" y2="60" stroke="white" stroke-width="2"/>
-                        <text x="250" y="75" fill="white" font-size="20" text-anchor="middle">+ CH₃Cl</text>
-                        <text x="250" y="95" fill="white" font-size="16" text-anchor="middle">AlCl₃</text>
-                        <text x="300" y="75" fill="white" font-size="20" text-anchor="middle">→</text>
-                        <text x="350" y="75" fill="white" font-size="16" text-anchor="middle">?</text>
-                    </svg>`,
-                    options: [
-                        "Chlorobenzene",
-                        "Toluene (methylbenzene)",
-                        "Benzyl chloride",
-                        "Benzoic acid"
-                    ],
-                    correctAnswer: 1,
-                    explanation: "This reaction is a Friedel-Crafts alkylation. When benzene reacts with chloromethane (CH₃Cl) in the presence of AlCl₃ catalyst, the methyl group is transferred to the benzene ring, forming toluene (methylbenzene). The AlCl₃ acts as a Lewis acid, generating a carbocation intermediate that attacks the benzene ring.",
-                    timeLimit: 60
                 }
-            ];
-            
-            // DOM elements
-            const welcomeScreen = document.getElementById('welcome-screen');
-            const quizScreen = document.getElementById('quiz-screen');
-            const resultsScreen = document.getElementById('results-screen');
-            const startBtn = document.getElementById('start-btn');
-            const nextBtn = document.getElementById('next-btn');
-            const prevBtn = document.getElementById('prev-btn');
-            const restartBtn = document.getElementById('restart-btn');
-            const characters = document.querySelectorAll('.character');
-            const questionText = document.getElementById('question-text');
-            const questionImage = document.getElementById('question-image');
-            const optionsContainer = document.getElementById('options-container');
-            const currentQuestionEl = document.getElementById('current-question');
-            const totalQuestionsEl = document.getElementById('total-questions');
-            const timerText = document.getElementById('timer-text');
-            const timerBar = document.getElementById('timer-bar');
-            const timeIndicator = document.getElementById('time-indicator');
-            const characterName = document.getElementById('character-name');
-            const characterIcon = document.getElementById('character-icon');
-            const resultCharacterName = document.getElementById('result-character-name');
-            const resultCharacterIcon = document.getElementById('result-character-icon');
-            const scoreEl = document.getElementById('score');
-            const maxScoreEl = document.getElementById('max-score');
-            const scoreBar = document.getElementById('score-bar');
-            const feedbackMessage = document.getElementById('feedback-message');
-            const questionsReview = document.getElementById('questions-review');
-            
-            // Quiz state
-            let currentQuestion = 0;
-            let score = 0;
-            let selectedCharacter = null;
-            let userAnswers = Array(quizData.length).fill(null);
-            let timer = null;
-            let timeLeft = 0;
-            
-            // Character data
-            const characterData = {
-                Scientist : {
-                    name: "Scientist (primary)",
-                    icon: `<div class="bg-blue-500/30 rounded-full w-full h-full flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                        </svg>
-                    </div>`
-                },
-                Professors : {
-                    name: "Professors (Middle)",
-                    icon: `<div class="bg-purple-500/30 rounded-full w-full h-full flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 14l9-5-9-5-9 5 9 5z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                        </svg>
-                    </div>`
-                },
-                Chemist : {
-                    name: "Chemist (Secondary)",
-                    icon: `<div class="bg-green-500/30 rounded-full w-full h-full flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                        </svg>
-                    </div>`
-                }
+            ]
+        }
+    };
+
+    let currentUser = null;
+    let currentQuiz = null;
+    let currentQuestionIndex = 0;
+    let userAnswers = [];
+    let quizTimer = null;
+    let quizTime = 0;
+    let timer = null;
+    let timerText = null;
+    let timerBar = null;
+
+    // Login form submission 
+    loginForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        // Simple validation 
+        if (email && password) {
+            // Set current user (in a real app, this would involve authentication) 
+            currentUser = {
+                name: email.split('@')[0],
+                email: email,
+                isAdmin: email.includes('admin')
             };
-            
-            // Initialize quiz
-            function init() {
-                totalQuestionsEl.textContent = quizData.length;
-                maxScoreEl.textContent = quizData.length;
-                
-                // Character selection
-                characters.forEach(character => {
-                    character.addEventListener('click', () => {
-                        characters.forEach(c => c.classList.remove('selected'));
-                        character.classList.add('selected');
-                        selectedCharacter = character.dataset.character;
-                        startBtn.disabled = false;
-                    });
-                });
-                
-                // Start button
-                startBtn.addEventListener('click', startQuiz);
-                
-                // Next button
-                nextBtn.addEventListener('click', () => {
-                    clearInterval(timer);
-                    if (currentQuestion < quizData.length - 1) {
-                        currentQuestion++;
-                        loadQuestion();
-                    } else {
-                        showResults();
-                    }
-                });
-                
-                // Previous button (hidden by default)
-                prevBtn.addEventListener('click', () => {
-                    if (currentQuestion > 0) {
-                        currentQuestion--;
-                        loadQuestion();
-                    }
-                });
-                
-                // Restart button
-                restartBtn.addEventListener('click', () => {
-                    currentQuestion = 0;
-                    score = 0;
-                    userAnswers = Array(quizData.length).fill(null);
-                    resultsScreen.classList.add('hidden');
-                    welcomeScreen.classList.remove('hidden');
-                });
+
+            // Update UI with user info 
+            document.getElementById('user-name').textContent = currentUser.name;
+            document.getElementById('user-initial').textContent = currentUser.name.charAt(0).toUpperCase();
+
+            // Show admin link if admin user 
+            if (currentUser.isAdmin) {
+                adminLink.classList.remove('hidden');
             }
-            
-            // Start the quiz
-            function startQuiz() {
-                welcomeScreen.classList.add('hidden');
-                quizScreen.classList.remove('hidden');
-                
-                // Set character info
-                characterName.textContent = characterData[selectedCharacter].name;
-                characterIcon.innerHTML = characterData[selectedCharacter].icon;
-                
-                loadQuestion();
+
+            // Show home page 
+            loginPage.classList.add('hidden');
+            homePage.classList.remove('hidden');
+
+            // Add animation classes to home page elements 
+            const cards = document.querySelectorAll('.card-hover');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('scale-in');
+                }, index * 100);
+            });
+        }
+    });
+
+    // User menu toggle 
+    userMenuButton.addEventListener('click', function () {
+        userDropdown.classList.toggle('hidden');
+    });
+
+    // Close dropdown when clicking outside 
+    document.addEventListener('click', function (e) {
+        if (!userMenuButton.contains(e.target) && !userDropdown.contains(e.target)) {
+            userDropdown.classList.add('hidden');
+        }
+    });
+
+    // Logout button 
+    logoutButton.addEventListener('click', function () {
+        currentUser = null;
+        homePage.classList.add('hidden');
+        loginPage.classList.remove('hidden');
+        userDropdown.classList.add('hidden');
+        document.getElementById('email').value = '';
+        document.getElementById('password').value = '';
+        adminLink.classList.add('hidden');
+    });
+
+    // Start quiz when subject button is clicked 
+    subjectButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const subject = this.getAttribute('data-subject');
+            if (quizData[subject]) {
+                startQuiz(subject);
+            } else {
+                alert('Quiz for this subject is not available yet.');
             }
-            
-            // Load current question
-            function loadQuestion() {
-                const question = quizData[currentQuestion];
-                
-                // Update question number
-                currentQuestionEl.textContent = currentQuestion + 1;
-                
-                // Update question text
-                questionText.textContent = question.question;
-                
-                // Update question image if exists
-                if (question.image) {
-                    questionImage.innerHTML = question.image;
-                    questionImage.classList.remove('hidden');
-                } else {
-                    questionImage.innerHTML = '';
-                    questionImage.classList.add('hidden');
-                }
-                
-                // Update time indicator
-                if (question.timeLimit === 30) {
-                    timeIndicator.textContent = '30-second question';
-                    timeIndicator.classList.add('text-yellow-300');
-                    timeIndicator.classList.remove('text-green-300');
-                } else {
-                    timeIndicator.textContent = '60-second question';
-                    timeIndicator.classList.add('text-green-300');
-                    timeIndicator.classList.remove('text-yellow-300');
-                }
-                
-                // Clear options
-                optionsContainer.innerHTML = '';
-                
-                // Add options
-                question.options.forEach((option, index) => {
-                    const optionBtn = document.createElement('button');
-                    optionBtn.className = 'option-btn bg-white/5 hover:bg-white/10 text-left p-4 rounded-lg transition-all';
-                    if (userAnswers[currentQuestion] === index) {
-                        optionBtn.classList.add('selected');
-                    }
-                    
-                    optionBtn.innerHTML = `
-                        <div class="flex items-center">
-                            <div class="w-6 h-6 rounded-full border-2 border-blue-400 flex items-center justify-center mr-3">
-                                <span class="text-sm">${String.fromCharCode(65 + index)}</span>
-                            </div>
-                            <span>${option}</span>
-                        </div>
-                    `;
-                    
-                    optionBtn.addEventListener('click', () => selectOption(index));
-                    optionsContainer.appendChild(optionBtn);
-                });
-                
-                // Start timer
-                startTimer(question.timeLimit);
-                
-                // Update button text
-                if (currentQuestion === quizData.length - 1) {
-                    nextBtn.textContent = 'Finish';
-                } else {
-                    nextBtn.textContent = 'Next';
-                }
-                
-                // Show/hide prev button
-                if (currentQuestion > 0) {
-                    prevBtn.classList.remove('hidden');
-                } else {
-                    prevBtn.classList.add('hidden');
-                }
-            }
-            
-            // Select an option
-            function selectOption(optionIndex) {
-                userAnswers[currentQuestion] = optionIndex;
-                
-                // Update selected option UI
-                const optionBtns = optionsContainer.querySelectorAll('.option-btn');
-                optionBtns.forEach((btn, index) => {
-                    if (index === optionIndex) {
-                        btn.classList.add('selected');
-                    } else {
-                        btn.classList.remove('selected');
-                    }
-                });
-            }
-            
-            // Start timer for current question
-            function startTimer(seconds) {
-                clearInterval(timer);
-                timeLeft = seconds;
-                timerText.textContent = timeLeft;
-                timerBar.style.width = '100%';
-                
-                timer = setInterval(() => {
-                    timeLeft--;
-                    timerText.textContent = timeLeft;
-                    timerBar.style.width = `${(timeLeft / seconds) * 100}%`;
-                    
-                    if (timeLeft <= 5) {
-                        timerBar.classList.add('bg-red-500');
-                        timerBar.classList.remove('bg-blue-500');
-                    } else {
-                        timerBar.classList.add('bg-blue-500');
-                        timerBar.classList.remove('bg-red-500');
-                    }
-                    
-                    if (timeLeft <= 0) {
-                        clearInterval(timer);
-                        if (currentQuestion < quizData.length - 1) {
-                            currentQuestion++;
-                            loadQuestion();
-                        } else {
-                            showResults();
-                        }
-                    }
-                }, 1000);
-            }
-            
-            // Show results
-            function showResults() {
-                clearInterval(timer);
-                quizScreen.classList.add('hidden');
-                resultsScreen.classList.remove('hidden');
-                
-                // Calculate score
-                score = 0;
-                userAnswers.forEach((answer, index) => {
-                    if (answer === quizData[index].correctAnswer) {
-                        score++;
-                    }
-                });
-                
-                // Update score display
-                scoreEl.textContent = score;
-                scoreBar.style.width = `${(score / quizData.length) * 100}%`;
-                
-                // Set character info
-                resultCharacterName.textContent = characterData[selectedCharacter].name;
-                resultCharacterIcon.innerHTML = characterData[selectedCharacter].icon;
-                
-                // Set feedback message
-                if (score === quizData.length) {
-                    feedbackMessage.textContent = "Perfect score! You've mastered Year 13 Chemist (Secondary)ry!";
-                    feedbackMessage.classList.add('text-green-300');
-                } else if (score >= quizData.length * 0.8) {
-                    feedbackMessage.textContent = "Excellent work! You have a strong understanding of Chemist (Secondary)ry concepts.";
-                    feedbackMessage.classList.add('text-green-300');
-                } else if (score >= quizData.length * 0.6) {
-                    feedbackMessage.textContent = "Good job! You're on the right track with your Chemist (Secondary)ry knowledge.";
-                    feedbackMessage.classList.add('text-yellow-300');
-                } else if (score >= quizData.length * 0.4) {
-                    feedbackMessage.textContent = "You're making progress. Review the explanations to strengthen your understanding.";
-                    feedbackMessage.classList.add('text-yellow-300');
-                } else {
-                    feedbackMessage.textContent = "Keep studying! Chemist (Secondary)ry takes practice. Review the explanations carefully.";
-                    feedbackMessage.classList.add('text-red-300');
-                }
-                
-                // Generate question review
-                questionsReview.innerHTML = '';
-                quizData.forEach((question, index) => {
-                    const userAnswer = userAnswers[index];
-                    const isCorrect = userAnswer === question.correctAnswer;
-                    
-                    const reviewItem = document.createElement('div');
-                    reviewItem.className = 'bg-white/5 backdrop-blur-sm rounded-lg p-6';
-                    
-                    reviewItem.innerHTML = `
-                        <div class="flex justify-between items-start mb-3">
-                            <h3 class="text-lg font-medium">Question ${index + 1}</h3>
-                            <span class="px-3 py-1 rounded-full text-sm font-medium ${isCorrect ? 'bg-green-500/20 text-green-300' : 'bg-red-500/20 text-red-300'}">
-                                ${isCorrect ? 'Correct' : 'Incorrect'}
-                            </span>
-                        </div>
-                        <p class="mb-4">${question.question}</p>
-                        ${question.image ? `<div class="mb-4">${question.image}</div>` : ''}
-                        <div class="mb-4">
-                            <div class="text-sm text-gray-300 mb-1">Your answer:</div>
-                            <div class="${isCorrect ? 'text-green-300' : 'text-red-300'}">
-                                ${userAnswer !== null ? question.options[userAnswer] : 'No answer provided'}
-                            </div>
-                        </div>
-                        <div class="mb-4">
-                            <div class="text-sm text-gray-300 mb-1">Correct answer:</div>
-                            <div class="text-green-300">${question.options[question.correctAnswer]}</div>
-                        </div>
-                        <div>
-                            <div class="text-sm text-gray-300 mb-1">Explanation:</div>
-                            <div class="text-blue-300">${question.explanation}</div>
-                        </div>
-                    `;
-                    
-                    questionsReview.appendChild(reviewItem);
-                });
-            }
-            
-            // Initialize the quiz
-            init();
         });
-    </script>
+    });
+
+    // Back to home button 
+    backToHomeBtn.addEventListener('click', function () {
+        stopQuiz();
+        quizPage.classList.add('hidden');
+        homePage.classList.remove('hidden');
+    });
+
+    backToHomeFromResultsBtn.addEventListener('click', function () {
+        resultsPage.classList.add('hidden');
+        homePage.classList.remove('hidden');
+    });
+
+    backToHomeFromAdminBtn.addEventListener('click', function () {
+        adminPage.classList.add('hidden');
+        homePage.classList.remove('hidden');
+    });
+
+    // Admin link 
+    adminLink.addEventListener('click', function () {
+        homePage.classList.add('hidden');
+        adminPage.classList.remove('hidden');
+    });
+
+    // Next question button 
+    nextQuestionBtn.addEventListener('click', function () {
+        if (currentQuestionIndex < currentQuiz.questions.length - 1) {
+            // Save current answer 
+            const selectedOption = document.querySelector('input[name="answer"]:checked');
+            if (selectedOption) {
+                userAnswers[currentQuestionIndex] = selectedOption.value;
+            }
+
+            // Move to next question 
+            currentQuestionIndex++;
+            displayQuestion();
+        } else {
+            // Save last answer 
+            const selectedOption = document.querySelector('input[name="answer"]:checked');
+            if (selectedOption) {
+                userAnswers[currentQuestionIndex] = selectedOption.value;
+            }
+
+            // End quiz and show results 
+            endQuiz();
+        }
+    });
+
+    // Previous question button 
+    prevQuestionBtn.addEventListener('click', function () {
+        if (currentQuestionIndex > 0) {
+            // Save current answer 
+            const selectedOption = document.querySelector('input[name="answer"]:checked');
+            if (selectedOption) {
+                userAnswers[currentQuestionIndex] = selectedOption.value;
+            }
+
+            // Move to previous question 
+            currentQuestionIndex--;
+            displayQuestion();
+        }
+    });
+
+    // Return to home from results 
+    returnHomeBtn.addEventListener('click', function () {
+        resultsPage.classList.add('hidden');
+        homePage.classList.remove('hidden');
+    });
+
+    // Review answers button - toggle review section visibility
+    reviewAnswersBtn.addEventListener('click', function () {
+        const questionsReview = document.getElementById('questions-review');
+        if (questionsReview.classList.contains('hidden')) {
+            questionsReview.classList.remove('hidden');
+            reviewAnswersBtn.textContent = 'Hide Review';
+        } else {
+            questionsReview.classList.add('hidden');
+            reviewAnswersBtn.textContent = 'Review Answers';
+        }
+    });
+
+    // Upload PDF button (placeholder functionality) 
+    uploadPdfBtn.addEventListener('click', function () {
+        const subject = document.getElementById('subject-select').value;
+        const title = document.getElementById('quiz-title-input').value;
+        const fileInput = document.getElementById('file-upload');
+
+        if (!subject || !title || !fileInput.files.length) {
+            alert('Please fill in all fields and select a PDF file.');
+            return;
+        }
+
+        // Show processing message (in a real app, this would involve actual file upload and processing) 
+        alert('PDF uploaded successfully! Processing will begin shortly.');
+
+        // Reset form 
+        document.getElementById('subject-select').value = '';
+        document.getElementById('quiz-title-input').value = '';
+        document.getElementById('file-upload').value = '';
+    });
+
+    // Function to start a quiz 
+    function startQuiz(subject) {
+        currentQuiz = quizData[subject];
+        currentQuestionIndex = 0;
+        userAnswers = new Array(currentQuiz.questions.length).fill(null);
+
+        // Update quiz title 
+        document.getElementById('quiz-title').textContent = currentQuiz.title;
+
+        // Start timer 
+        quizTime = 0;
+        if (quizTimer) clearInterval(quizTimer);
+        quizTimer = setInterval(updateQuizTimer, 1000);
+
+        // Display first question 
+        displayQuestion();
+
+        // Show quiz page 
+        homePage.classList.add('hidden');
+        quizPage.classList.remove('hidden');
+    }
+
+    // Function to start timer for current question
+    function startTimer(seconds) {
+        clearInterval(timer);
+        let timeLeft = seconds;
+        timerText = document.getElementById('timer-text');
+        timerBar = document.getElementById('timer-bar');
+
+        timerText.textContent = timeLeft;
+        timerBar.style.width = '100%';
+
+        timer = setInterval(() => {
+            timeLeft--;
+            timerText.textContent = timeLeft;
+            timerBar.style.width = `${(timeLeft / seconds) * 100}%`;
+
+            if (timeLeft <= 5) {
+                timerBar.classList.add('bg-red-500');
+                timerBar.classList.remove('bg-blue-500');
+            } else {
+                timerBar.classList.add('bg-blue-500');
+                timerBar.classList.remove('bg-red-500');
+            }
+
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                // Auto-advance to next question or end quiz
+                if (currentQuestionIndex < currentQuiz.questions.length - 1) {
+                    currentQuestionIndex++;
+                    displayQuestion();
+                } else {
+                    endQuiz();
+                }
+            }
+        }, 1000);
+    }
+
+    // Function to display current question 
+    function displayQuestion() {
+        const question = currentQuiz.questions[currentQuestionIndex];
+        document.getElementById('question-text').textContent = question.question;
+
+        // Update progress 
+        const progressPercent = ((currentQuestionIndex + 1) / currentQuiz.questions.length) * 100;
+        document.getElementById('quiz-progress').style.width = `${progressPercent}%`;
+        document.getElementById('quiz-progress-text').textContent = `Question ${currentQuestionIndex + 1} of ${currentQuiz.questions.length}`;
+
+        // Update time indicator
+        const timeIndicator = document.getElementById('time-indicator');
+        if (question.timeLimit === 30) {
+            timeIndicator.textContent = '30-second question';
+            timeIndicator.classList.add('text-yellow-600');
+            timeIndicator.classList.remove('text-green-600');
+        } else {
+            timeIndicator.textContent = '60-second question';
+            timeIndicator.classList.add('text-green-600');
+            timeIndicator.classList.remove('text-yellow-600');
+        }
+
+        // Create options 
+        const optionsContainer = document.getElementById('options-container');
+        optionsContainer.innerHTML = '';
+
+        question.options.forEach((option, index) => {
+            const letter = String.fromCharCode(65 + index); // A, B, C, D...
+            const div = document.createElement('div');
+            div.className = 'option bg-white border border-gray-300 rounded-md p-3 hover:bg-blue-50 cursor-pointer transition-colors';
+            div.innerHTML = `
+                <label class="flex items-center cursor-pointer">
+                    <input class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300" 
+                           type="radio" 
+                           name="answer" 
+                           value="${letter}" 
+                           ${userAnswers[currentQuestionIndex] === letter ? 'checked' : ''}>
+                    <span class="ml-3 text-gray-800">${option}</span>
+                </label>
+            `;
+            optionsContainer.appendChild(div);
+        });
+
+        // Update button states 
+        prevQuestionBtn.disabled = currentQuestionIndex === 0;
+        nextQuestionBtn.textContent = currentQuestionIndex === currentQuiz.questions.length - 1 ? 'Finish' : 'Next';
+
+        // Start timer for this question
+        startTimer(question.timeLimit);
+    }
+
+    // Function to update quiz timer 
+    function updateQuizTimer() {
+        quizTime++;
+        const minutes = Math.floor(quizTime / 60).toString().padStart(2, '0');
+        const seconds = (quizTime % 60).toString().padStart(2, '0');
+        document.getElementById('quiz-timer').textContent = `Time: ${minutes}:${seconds}`;
+    }
+
+    // Function to stop quiz timer 
+    function stopQuiz() {
+        if (quizTimer) {
+            clearInterval(quizTimer);
+            quizTimer = null;
+        }
+        if (timer) {
+            clearInterval(timer);
+            timer = null;
+        }
+    }
+
+    // Function to end quiz and show results 
+    function endQuiz() {
+        stopQuiz();
+
+        // Calculate results 
+        let correctCount = 0;
+        userAnswers.forEach((answer, index) => {
+            if (answer === currentQuiz.questions[index].answer) {
+                correctCount++;
+            }
+        });
+
+        const scorePercent = Math.round((correctCount / currentQuiz.questions.length) * 100);
+        const incorrectCount = currentQuiz.questions.length - correctCount;
+
+        // Update results UI 
+        document.getElementById('results-title').textContent = `${currentQuiz.title} Completed!`;
+        document.getElementById('score-percentage').textContent = `${scorePercent}%`;
+        document.getElementById('correct-answers').textContent = correctCount;
+        document.getElementById('incorrect-answers').textContent = incorrectCount;
+        document.getElementById('accuracy').textContent = `${scorePercent}%`;
+
+        // Format time 
+        const minutes = Math.floor(quizTime / 60).toString().padStart(2, '0');
+        const seconds = (quizTime % 60).toString().padStart(2, '0');
+        document.getElementById('time-taken').textContent = `${minutes}:${seconds}`;
+
+        // Calculate average time per question 
+        const avgTimePerQuestion = (quizTime / currentQuiz.questions.length).toFixed(1);
+        document.getElementById('avg-time').textContent = `${avgTimePerQuestion} seconds`;
+
+        // Update results circle 
+        const circle = document.getElementById('results-circle');
+        const radius = circle.getAttribute('r');
+        const circumference = 2 * Math.PI * radius;
+        const offset = circumference - (scorePercent / 100) * circumference;
+        circle.style.strokeDasharray = `${circumference} ${circumference}`;
+        circle.style.strokeDashoffset = offset;
+
+        // Generate question review
+        const questionsReview = document.getElementById('questions-review');
+        questionsReview.innerHTML = '';
+
+        currentQuiz.questions.forEach((question, index) => {
+            const userAnswer = userAnswers[index];
+            const isCorrect = userAnswer === question.answer;
+
+            const reviewItem = document.createElement('div');
+            reviewItem.className = 'bg-white/5 bg-gray-50 backdrop-blur-sm rounded-lg p-6';
+
+            reviewItem.innerHTML = `
+                <div class="flex justify-between items-start mb-3">
+                    <h3 class="text-lg font-medium">Question ${index + 1}</h3>
+                    <span class="px-3 py-1 rounded-full text-sm font-medium ${isCorrect ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
+                        ${isCorrect ? 'Correct' : 'Incorrect'}
+                    </span>
+                </div>
+                <p class="mb-4">${question.question}</p>
+                <div class="mb-4">
+                    <div class="text-sm text-gray-600 mb-1">Your answer:</div>
+                    <div class="${isCorrect ? 'text-green-600' : 'text-red-600'}">
+                        ${userAnswer !== null ? question.options[userAnswer.charCodeAt(0) - 65] : 'No answer provided'}
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <div class="text-sm text-gray-600 mb-1">Correct answer:</div>
+                    <div class="text-green-600">${question.options[question.answer.charCodeAt(0) - 65]}</div>
+                </div>
+                <div>
+                    <div class="text-sm text-gray-600 mb-1">Explanation:</div>
+                    <div class="text-blue-600">${question.explanation}</div>
+                </div>
+            `;
+
+            questionsReview.appendChild(reviewItem);
+        });
+
+        // Show results page 
+        quizPage.classList.add('hidden');
+        resultsPage.classList.remove('hidden');
+    }
+});
+</script>
 </body>
 </html>
